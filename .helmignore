@@ -21,3 +21,7 @@
 .idea/
 *.tmproj
 .vscode/
+*.tar
+kubectl
+*.gz
+*.deb
