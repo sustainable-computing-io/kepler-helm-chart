@@ -1,0 +1,59 @@
+name: Integration test
+
+on:
+  pull_request:
+
+jobs:
+  integration_test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        kube_provider: [kind]
+    steps:
+      - uses: actions/checkout@main
+      - uses: actions/setup-go@main
+        with:
+          go-version: 1.18
+
+      - name: install kernel headers
+        run: |
+          sudo apt-get install -y linux-headers-`uname -r`
+          sudo ls /usr/src/linux-headers-`uname -r`
+
+      - name: install bcc
+        run: |
+            wget https://github.com/sustainable-computing-io/kepler-ci-artifacts/releases/download/v0.25.0/bcc_v0.25.0.tar.gz
+            tar -zxvf bcc_v0.25.0.tar.gz
+            sudo dpkg -i libbcc_0.25.0-1_amd64.deb
+
+      - name: install kubectl
+        run: curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+
+      - name: install helm
+        run: |     
+            curl https://baltocdn.com/helm/signing.asc | gpg --dearmor | sudo tee /usr/share/keyrings/helm.gpg > /dev/null
+            sudo apt-get install apt-transport-https --yes
+            echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/helm.gpg] https://baltocdn.com/helm/stable/debian/ all main" | sudo tee /etc/apt/sources.list.d/helm-stable-debian.list
+            sudo apt-get update
+            sudo apt-get install helm
+            sudo apt-get install tree
+            
+      - name: start local k8s cluster
+        run: |
+            git clone https://github.com/sustainable-computing-io/kepler.git
+            cd kepler       
+            export CLUSTER_PROVIDER="kind"
+            make cluster-up
+            cd ..
+            rm -rf kepler
+
+      - name: deploy kepler using helm chart
+        run: |      
+            tree 
+            helm install  kepler . --values values.yaml  --create-namespace  --namespace kepler
+
+      - name: test if kepler is alive
+        run: |
+          sleep 60
+          kubectl logs $(kubectl -n kepler get pods -oname) -n kepler
+          kubectl get all -n kepler
