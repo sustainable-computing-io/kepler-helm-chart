@@ -19,7 +19,7 @@ spec:
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         resources:
           requests:
-            memory: "400Mi"
+            memory: "200Mi"
             cpu: "100m"
         securityContext:
           privileged: true
