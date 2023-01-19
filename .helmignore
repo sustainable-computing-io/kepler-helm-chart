@@ -25,3 +25,7 @@
 kubectl
 *.gz
 *.deb
+# CI
+KeplerK8SAction
+.deb
+kubectl
