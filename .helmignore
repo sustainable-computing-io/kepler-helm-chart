@@ -29,3 +29,4 @@ kubectl
 KeplerK8SAction
 .deb
 kubectl
+local-dev-cluster
