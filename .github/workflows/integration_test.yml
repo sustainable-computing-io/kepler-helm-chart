@@ -35,7 +35,7 @@ jobs:
 
       - name: deploy kepler using helm chart
         run: |
-            tree
+            tree -a
             helm install  kepler . --values values.yaml  --create-namespace  --namespace kepler --dry-run --debug
             helm install  kepler . --values values.yaml  --create-namespace  --namespace kepler --debug
 
