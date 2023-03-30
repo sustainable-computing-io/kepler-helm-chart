@@ -52,6 +52,8 @@ spec:
           name: tracing
         - mountPath: /proc
           name: proc
+        - mountPath: /usr/src
+          name: usr-src
         env:
         - name: NODE_NAME
           valueFrom:
@@ -63,7 +65,7 @@ spec:
       - name: lib-modules
         hostPath:
           path: /lib/modules
-          type: Directory
+          type: DirectoryOrCreate
       - name: tracing
         hostPath:
           path: /sys
@@ -71,4 +73,8 @@ spec:
       - name: proc
         hostPath:
           path: /proc
+          type: Directory
+      - name: usr-src
+        hostPath:
+          path: /usr/src
           type: Directory
