@@ -13,6 +13,7 @@ spec:
         {{- include "kepler.selectorLabels" . | nindent 8 }}
     spec:
       hostNetwork: true
+      serviceAccountName: {{ .Values.serviceAccount.name }}
       containers:
       - name: kepler-exporter
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
