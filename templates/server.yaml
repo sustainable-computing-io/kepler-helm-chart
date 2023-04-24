@@ -1,3 +1,4 @@
+---
 apiVersion: apps/v1
 kind: DaemonSet
 metadata:
@@ -9,21 +10,21 @@ spec:
       {{- include "kepler.selectorLabels" . | nindent 6 }}
   template:
     metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
       labels:
         {{- include "kepler.selectorLabels" . | nindent 8 }}
     spec:
       hostNetwork: true
-      serviceAccountName: {{ .Values.serviceAccount.name }}
+      serviceAccountName: {{ include "kepler.serviceAccountName" . }}
       containers:
       - name: kepler-exporter
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
-        resources:
-          requests:
-            memory: "200Mi"
-            cpu: "100m"
         securityContext:
-          privileged: true
+          {{- toYaml .Values.securityContext | nindent 12 }}
         command:
         - /usr/bin/kepler
         - -address
@@ -61,6 +62,10 @@ spec:
               fieldPath: spec.nodeName
         - name: CPU_ARCH_OVERRIDE
           value:
+        {{- with .Values.resources }}
+        resources:
+          {{- toYaml . | nindent 12 }}
+        {{- end }}
       volumes:
       - name: lib-modules
         hostPath:
@@ -78,3 +83,15 @@ spec:
         hostPath:
           path: /usr/src
           type: Directory
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
