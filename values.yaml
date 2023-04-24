@@ -9,7 +9,7 @@ image:
   tag: "latest"
 
 imagePullSecrets: []
-nameOverride: "kepler-exporter"
+nameOverride: ""
 fullnameOverride: ""
 
 serviceAccount:
