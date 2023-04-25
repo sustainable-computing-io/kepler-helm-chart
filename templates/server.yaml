@@ -4,6 +4,8 @@ kind: DaemonSet
 metadata:
   name: {{ include "kepler.name" . }}
   namespace: {{ .Values.global.namespace }}
+  labels:
+    {{- include "kepler.labels" . | nindent 4 }}
 spec:
   selector:
     matchLabels:
@@ -25,13 +27,21 @@ spec:
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         securityContext:
           {{- toYaml .Values.securityContext | nindent 12 }}
-        command:
-        - /usr/bin/kepler
-        - -address
-        - 0.0.0.0:{{ .Values.service.port }}
-        - -enable-gpu=true
-        - -enable-cgroup-id=true
-        - -v=1
+        args:
+          - -v=$(KEPLER_LOG_LEVEL)
+        env:
+          - name: NODE_NAME
+            valueFrom:
+              fieldRef:
+                fieldPath: spec.nodeName
+          - name: METRIC_PATH
+            value: "/metrics"
+          - name: BIND_ADDRESS
+            value: "0.0.0.0:{{ .Values.service.port }}"
+          {{- range $key, $value := .Values.extraEnvVars }}
+          - name: {{ $key | quote }}
+            value: {{ $value | quote }}
+          {{- end }}
         ports:
         - containerPort: {{ .Values.service.port }}
           hostPort: {{ .Values.service.port }}
@@ -55,13 +65,6 @@ spec:
           name: proc
         - mountPath: /usr/src
           name: usr-src
-        env:
-        - name: NODE_NAME
-          valueFrom:
-            fieldRef:
-              fieldPath: spec.nodeName
-        - name: CPU_ARCH_OVERRIDE
-          value:
         {{- with .Values.resources }}
         resources:
           {{- toYaml . | nindent 12 }}
