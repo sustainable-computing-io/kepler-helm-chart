@@ -50,7 +50,7 @@ tolerations:
 affinity: {}
 
 serviceMonitor:
-  enabled: true
+  enabled: false
   namespace: ""
   interval: 30s
   scrapeTimeout: 5s
