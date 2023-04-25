@@ -48,3 +48,10 @@ tolerations:
     key: node-role.kubernetes.io/master
 
 affinity: {}
+
+serviceMonitor:
+  enabled: true
+  namespace: ""
+  interval: 30s
+  scrapeTimeout: 5s
+  labels: {}
