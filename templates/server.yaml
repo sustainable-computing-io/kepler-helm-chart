@@ -30,10 +30,10 @@ spec:
         args:
           - -v=$(KEPLER_LOG_LEVEL)
         env:
-          - name: NODE_NAME
+          - name: NODE_IP
             valueFrom:
               fieldRef:
-                fieldPath: spec.nodeName
+                fieldPath: spec.hostIP
           - name: METRIC_PATH
             value: "/metrics"
           - name: BIND_ADDRESS
