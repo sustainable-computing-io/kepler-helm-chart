@@ -10,13 +10,13 @@ jobs:
       matrix:
         kube_provider: [kind]
     steps:
-      - uses: actions/checkout@main
-      - uses: actions/setup-go@main
+      - uses: actions/checkout@8e5e7e5ab8b370d6c329ec480221332ada57f0ab # v3
+      - uses: actions/setup-go@4d34df0c2316fe8122ab82dc22947d607c0c91f9 # v4
         with:
           go-version: 1.18
 
       - name: use kepler action for kind cluster build
-        uses: sustainable-computing-io/kepler-action@main
+        uses: sustainable-computing-io/kepler-action@1c37921519e197c701421ef0676c7cb0af90edc7
         with:
           runningBranch: kind
 

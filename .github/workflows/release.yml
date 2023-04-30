@@ -1,0 +1,37 @@
+name: Release Charts
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'chart/**'
+
+jobs:
+  release:
+    permissions:
+      contents: write # needed to write releases
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@8e5e7e5ab8b370d6c329ec480221332ada57f0ab # v3
+        with:
+          fetch-depth: 0
+
+      - name: Configure Git
+        run: |
+          git config user.name "$GITHUB_ACTOR"
+          git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
+
+      - name: Install Helm
+        uses: azure/setup-helm@5119fcb9089d432beecbf79bb2c7915207344b78 # v3.5
+        with:
+          version: latest
+
+      - name: Run chart-releaser
+        uses: helm/chart-releaser-action@be16258da8010256c6e82849661221415f031968 # v1.5.0
+        with:
+          charts_dir: chart
+          charts_repo_url: https://sustainable-computing-io.github.io/kepler-helm-chart
+        env:
+          CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
