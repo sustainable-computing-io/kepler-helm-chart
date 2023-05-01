@@ -2,10 +2,17 @@ name: Integration test
 
 on:
   pull_request:
+    types:
+      - "opened"
+      - "edited"
+      - "synchronize"
 
 jobs:
   integration_test:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./chart/kepler
     strategy:
       matrix:
         kube_provider: [kind]
