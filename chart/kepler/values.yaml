@@ -15,6 +15,9 @@ image:
 # -- Secret name for pulling images from private repository
 imagePullSecrets: []
 
+# -- Additional DaemonSet annotations
+annotations: {}
+
 # -- Additional pod annotations
 podAnnotations: {}
 
