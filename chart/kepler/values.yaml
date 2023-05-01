@@ -20,6 +20,7 @@ podAnnotations: {}
 
 # -- Privileges and access control settings for a Pod (all containers in a pod)
 podSecurityContext: {}
+  # fsGroup: 2000
 
 # -- Privileges and access control settings for a container
 securityContext:
