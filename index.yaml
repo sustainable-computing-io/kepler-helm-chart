@@ -2,6 +2,19 @@ apiVersion: v1
 entries:
   kepler:
   - apiVersion: v2
+    appVersion: 0.4.0
+    created: "2023-05-01T14:24:29.392609155Z"
+    description: A Helm chart for kepler
+    digest: a255f84013d55e0c3c3dd8f7237fb6121eb8628583421508a505dfcafa468f1f
+    home: https://sustainable-computing.io/html/index.html
+    name: kepler
+    sources:
+    - https://github.com/sustainable-computing-io/kepler
+    type: application
+    urls:
+    - https://github.com/sustainable-computing-io/kepler-helm-chart/releases/download/kepler-0.3.2/kepler-0.3.2.tgz
+    version: 0.3.2
+  - apiVersion: v2
     appVersion: 1.16.0
     created: "2023-05-01T13:35:11.801644498Z"
     description: A Helm chart for kepler
@@ -14,4 +27,4 @@ entries:
     urls:
     - https://github.com/sustainable-computing-io/kepler-helm-chart/releases/download/kepler-0.3.1/kepler-0.3.1.tgz
     version: 0.3.1
-generated: "2023-05-01T13:35:11.801655398Z"
+generated: "2023-05-01T14:24:29.392617555Z"
