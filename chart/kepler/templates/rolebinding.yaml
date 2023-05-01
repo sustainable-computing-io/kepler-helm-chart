@@ -10,9 +10,9 @@ rules:
   - nodes/proxy # access /pods
   - nodes/stats # access /pods
   verbs:
-  - 'get'
-  - 'watch'
-  - 'list'
+  - get
+  - watch
+  - list
 
 ---
 apiVersion: rbac.authorization.k8s.io/v1
