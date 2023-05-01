@@ -1,9 +1,11 @@
 ---
 image:
-  repository: quay.io/sustainable_computing_io/kepler
+  # -- Repository to pull the image from
+  repository: "quay.io/sustainable_computing_io/kepler"
+  # -- Image tag, if empty it will get it from the chart's appVersion
+  tag: ""
+  # -- Pull policy
   pullPolicy: Always
-  # Overrides the image tag whose default is the chart appVersion.
-  tag: "latest"
 
 imagePullSecrets: []
 nameOverride: ""
