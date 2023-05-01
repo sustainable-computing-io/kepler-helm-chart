@@ -22,7 +22,7 @@ spec:
       serviceAccountName: {{ include "kepler.serviceAccountName" . }}
       containers:
       - name: kepler-exporter
-        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         securityContext:
           {{- toYaml .Values.securityContext | nindent 12 }}
