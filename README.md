@@ -1,6 +1,6 @@
 # kepler-helm-chart
 
-This repository is for the Helm chart for Kepler.  We are using gh-pages branch to host and index the chart.  When modifying the chart please bump the version in the [Chart.yaml](/chart/kepler/Chart.yaml) file.
+This repository is for the Helm chart for Kepler.  We are using `gh-pages` branch to host and index the chart.  When modifying the chart please bump the version in the [Chart.yaml](/chart/kepler/Chart.yaml) file.
 
 The chart is accessible using the following commands:
 
@@ -19,11 +19,11 @@ helm search repo kepler
 If you would like to test and look at the manifest files before deploying you can run:
 
 ```bash
-helm install kepler kepler/kepler --dry-run --devel
+helm install kepler kepler/kepler --namespace kepler --create-namespace --dry-run --devel
 ```
 
 Then to install run the following:
 
 ```bash
-helm install kepler kepler/kepler
+helm install kepler kepler/kepler --namespace kepler --create-namespace
 ```

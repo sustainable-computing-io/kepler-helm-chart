@@ -1,7 +1,4 @@
 ---
-global:
-  namespace: "kepler"
-
 image:
   repository: quay.io/sustainable_computing_io/kepler
   pullPolicy: Always
