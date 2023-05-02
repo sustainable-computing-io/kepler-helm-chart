@@ -5,6 +5,10 @@ metadata:
   name: {{ include "kepler.name" . }}
   labels:
     {{- include "kepler.labels" . | nindent 4 }}
+  {{- with .Values.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
 spec:
   selector:
     matchLabels:
