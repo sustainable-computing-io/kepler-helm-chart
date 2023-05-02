@@ -2,8 +2,8 @@ apiVersion: v2
 name: kepler
 description: A Helm chart for kepler
 type: application
-version: 0.3.5
-appVersion: latest
+version: 0.3.6
+appVersion: v0.4.11-23-g2b59dbd-linux-amd64
 home: https://sustainable-computing.io/html/index.html
 sources:
   - https://github.com/sustainable-computing-io/kepler
