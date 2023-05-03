@@ -1,3 +1,4 @@
+[![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/kepler)](https://artifacthub.io/packages/search?repo=kepler) ![GitHub](https://img.shields.io/github/license/sustainable-computing-io/kepler-helm-chart)
 # kepler-helm-chart
 
 This repository is for the Helm chart for Kepler.  We are using `gh-pages` branch to host and index the chart.  When modifying the chart please bump the version in the [Chart.yaml](/chart/kepler/Chart.yaml) file.
