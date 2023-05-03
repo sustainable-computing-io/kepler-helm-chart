@@ -1,9 +1,23 @@
 apiVersion: v2
 name: kepler
-description: A Helm chart for kepler
-type: application
-version: 0.3.6
-appVersion: v0.4.11-23-g2b59dbd-linux-amd64
+description: A Helm chart for kepler (Kubernetes-based Efficient Power Level Exporter) 
 home: https://sustainable-computing.io/html/index.html
 sources:
   - https://github.com/sustainable-computing-io/kepler
+keywords:
+  - cloud-native
+  - sustainable-computing
+  - kepler
+  - ebpf
+annotations:
+  artifacthub.io/links: |
+    - name: support
+      url: https://github.com/sustainable-computing-io/kepler/issues/new
+    - name: docs
+      url: https://sustainable-computing.io/
+  artifacthub.io/license: "Apache-2.0"
+
+type: application
+version: 0.3.7
+appVersion: v0.4.11-23-g2b59dbd-linux-amd64
+
