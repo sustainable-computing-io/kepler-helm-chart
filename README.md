@@ -1,7 +1,10 @@
-[![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/kepler)](https://artifacthub.io/packages/search?repo=kepler) ![GitHub](https://img.shields.io/github/license/sustainable-computing-io/kepler-helm-chart)
+![GitHub](https://img.shields.io/github/license/sustainable-computing-io/kepler-helm-chart) ![Release Charts](https://github.com/sustainable-computing-io/kepler-helm-chart/workflows/Release%20Charts/badge.svg?branch=main) [![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/kepler)](https://artifacthub.io/packages/search?repo=kepler) [![Releases downloads](https://img.shields.io/github/downloads/sustainable-computing-io/kepler-helm-chart/total.svg)](https://github.com/sustainable-computing-io/kepler-helm-chart/releases)
 # kepler-helm-chart
 
 This repository is for the Helm chart for Kepler.  We are using `gh-pages` branch to host and index the chart.  When modifying the chart please bump the version in the [Chart.yaml](/chart/kepler/Chart.yaml) file.
+
+[Helm](https://helm.sh) must be installed to use the charts.
+Please refer to Helm's [documentation](https://helm.sh/docs/) to get started.
 
 The chart is accessible using the following commands:
 

@@ -17,8 +17,11 @@ annotations:
     - name: docs
       url: https://sustainable-computing.io/
   artifacthub.io/license: "Apache-2.0"
+  artifacthub.io/signKey: |
+    fingerprint: 91BF31657FB6BB5931CBFCF92A544B84946E3621
+    url: https://keybase.io/bradmccoydev/pgp_keys.asc 
 
 type: application
-version: 0.3.7
+version: 0.3.8
 appVersion: v0.4.11-23-g2b59dbd-linux-amd64
 
