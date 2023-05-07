@@ -47,6 +47,5 @@ jobs:
         with:
           charts_dir: chart
           config: cr.yaml
-          charts_repo_url: https://sustainable-computing-io.github.io/kepler-helm-chart
         env:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
