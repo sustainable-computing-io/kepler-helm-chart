@@ -19,6 +19,6 @@ annotations:
   artifacthub.io/license: "Apache-2.0"
 
 type: application
-version: 0.3.7
+version: 0.3.8
 appVersion: v0.4.11-23-g2b59dbd-linux-amd64
 
