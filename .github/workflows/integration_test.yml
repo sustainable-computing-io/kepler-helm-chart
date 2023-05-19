@@ -6,6 +6,8 @@ on:
       - "opened"
       - "edited"
       - "synchronize"
+    paths-ignore:
+      - 'README.md'
 
 jobs:
   integration_test:
