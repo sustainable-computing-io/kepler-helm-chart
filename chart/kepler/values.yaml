@@ -21,6 +21,9 @@ annotations: {}
 # -- Additional pod annotations
 podAnnotations: {}
 
+# -- Additional pod labels
+podLabels: {}
+
 # -- Privileges and access control settings for a Pod (all containers in a pod)
 podSecurityContext: {}
   # fsGroup: 2000
