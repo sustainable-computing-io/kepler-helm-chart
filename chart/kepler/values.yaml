@@ -33,7 +33,8 @@ securityContext:
   privileged: true
 
 # -- Node selection constraint
-nodeSelector: {}
+nodeSelector:
+  kubernetes.io/os: linux
 
 # -- Toleration for taints
 tolerations:
