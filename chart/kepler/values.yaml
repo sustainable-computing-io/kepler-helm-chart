@@ -33,12 +33,13 @@ securityContext:
   privileged: true
 
 # -- Node selection constraint
-nodeSelector: {}
+nodeSelector:
+  kubernetes.io/os: linux
 
 # -- Toleration for taints
 tolerations:
   - effect: NoSchedule
-    key: node-role.kubernetes.io/master
+    key: node-role.kubernetes.io/control-plane
 
 # -- Affinity rules
 affinity: {}
