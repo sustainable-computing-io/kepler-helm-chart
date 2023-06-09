@@ -45,13 +45,7 @@ tolerations:
 affinity: {}
 
 # -- CPU/MEM resources
-resources:
-  requests:
-    cpu: 100m
-    memory: 200Mi
-  limits:
-    cpu: 100m
-    memory: 200Mi
+resources: {}
 
 # -- Extra environment variables
 extraEnvVars:
