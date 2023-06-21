@@ -40,6 +40,10 @@ spec:
             valueFrom:
               fieldRef:
                 fieldPath: status.hostIP
+          - name: NODE_NAME
+            valueFrom:
+              fieldRef:
+                fieldPath: spec.nodeName
           - name: METRIC_PATH
             value: "/metrics"
           - name: BIND_ADDRESS
