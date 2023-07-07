@@ -25,7 +25,7 @@ jobs:
       - name: use kepler action for kind cluster build
         uses: sustainable-computing-io/kepler-action@v0.0.1
         with:
-          cluster_provider: ${{matrix.cluster_provider}}
+          runningBranch: ${{matrix.cluster_provider}}
 
       - name: install helm
         run: |     
