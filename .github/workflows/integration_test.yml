@@ -15,7 +15,7 @@ jobs:
         working-directory: ./chart/kepler
     strategy:
       matrix:
-        kube_provider: [kind]
+        cluster_provider: [kind, microshift]
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-go@v4
@@ -23,9 +23,9 @@ jobs:
           go-version: 1.18
 
       - name: use kepler action for kind cluster build
-        uses: sustainable-computing-io/kepler-action@v0.0.0
+        uses: sustainable-computing-io/kepler-action@v0.0.1
         with:
-          runningBranch: kind
+          cluster_provider: ${{matrix.cluster_provider}}
 
       - name: install helm
         run: |     
