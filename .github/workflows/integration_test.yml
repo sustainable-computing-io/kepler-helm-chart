@@ -26,6 +26,7 @@ jobs:
         uses: sustainable-computing-io/kepler-action@v0.0.1
         with:
           runningBranch: ${{matrix.cluster_provider}}
+          cluster_provider: ${{matrix.cluster_provider}}
 
       - name: install helm
         run: |     
