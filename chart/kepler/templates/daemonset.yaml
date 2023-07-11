@@ -3,6 +3,7 @@ apiVersion: apps/v1
 kind: DaemonSet
 metadata:
   name: {{ include "kepler.name" . }}
+  namespace: {{ .Release.Namespace }}
   labels:
     {{- include "kepler.labels" . | nindent 4 }}
   {{- with .Values.annotations }}

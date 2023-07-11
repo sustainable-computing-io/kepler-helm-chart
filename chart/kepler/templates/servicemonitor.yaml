@@ -6,6 +6,8 @@ metadata:
   name: {{ template "kepler.fullname" . }}-prometheus-exporter
   {{- if .Values.serviceMonitor.namespace }}
   namespace: {{ . }}
+  {{- else }}
+  namespace: {{ .Release.Namespace }}
   {{- end }}
   labels:
     {{- include "kepler.labels" . | nindent 4 }}
