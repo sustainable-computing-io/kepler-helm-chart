@@ -36,6 +36,9 @@ spec:
           {{- toYaml .Values.securityContext | nindent 12 }}
         args:
           - -v=$(KEPLER_LOG_LEVEL)
+          {{- if .Values.redfish.enabled }}
+          - -redfish-cred-file-path=/etc/redfish/redfish.csv
+          {{- end }}
         env:
           - name: NODE_IP
             valueFrom:
@@ -68,35 +71,45 @@ spec:
           successThreshold: 1
           timeoutSeconds: 10
         volumeMounts:
-        - mountPath: /lib/modules
-          name: lib-modules
-        - mountPath: /sys
-          name: tracing
-        - mountPath: /proc
-          name: proc
-        - mountPath: /usr/src
-          name: usr-src
+          - name: lib-modules
+            mountPath: /lib/modules
+          - name: tracing
+            mountPath: /sys
+          - name: proc
+            mountPath: /proc
+          - name: usr-src
+            mountPath: /usr/src
+          {{- if .Values.redfish.enabled }}
+          - name: redfish
+            mountPath: /etc/redfish
+            readOnly: true
+          {{- end }}
         {{- with .Values.resources }}
         resources:
           {{- toYaml . | nindent 12 }}
         {{- end }}
       volumes:
-      - name: lib-modules
-        hostPath:
-          path: /lib/modules
-          type: DirectoryOrCreate
-      - name: tracing
-        hostPath:
-          path: /sys
-          type: Directory
-      - name: proc
-        hostPath:
-          path: /proc
-          type: Directory
-      - name: usr-src
-        hostPath:
-          path: /usr/src
-          type: Directory
+        - name: lib-modules
+          hostPath:
+            path: /lib/modules
+            type: DirectoryOrCreate
+        - name: tracing
+          hostPath:
+            path: /sys
+            type: Directory
+        - name: proc
+          hostPath:
+            path: /proc
+            type: Directory
+        - name: usr-src
+          hostPath:
+            path: /usr/src
+            type: Directory
+        {{- if .Values.redfish.enabled }}
+        - name: redfish
+          secret:
+            secretName: {{ .Values.redfish.name }}
+        {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
