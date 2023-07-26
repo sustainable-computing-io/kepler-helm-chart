@@ -86,4 +86,6 @@ redfish:
   name: redfish
   labels: {}
   annotations: {}
-  fileContent: "your_kubelet_node_name,redfish_username,redfish_password,https://redfish_ip_or_hostname"
+  fileContent: |-
+    your_kubelet_node1_name,redfish_username,redfish_password,https://node1_redfish_ip_or_hostname
+    your_kubelet_node2_name,redfish_username,redfish_password,https://node2_redfish_ip_or_hostname
