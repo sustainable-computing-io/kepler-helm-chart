@@ -77,8 +77,10 @@ spec:
             mountPath: /sys
           - name: proc
             mountPath: /proc
+          {{- if .Values.canMount.usrSrc }}
           - name: usr-src
             mountPath: /usr/src
+          {{- end }}
           {{- if .Values.redfish.enabled }}
           - name: redfish
             mountPath: /etc/redfish
@@ -101,10 +103,12 @@ spec:
           hostPath:
             path: /proc
             type: Directory
+        {{- if .Values.canMount.usrSrc }}
         - name: usr-src
           hostPath:
             path: /usr/src
             type: Directory
+        {{- end }}
         {{- if .Values.redfish.enabled }}
         - name: redfish
           secret:

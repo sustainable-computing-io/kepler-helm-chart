@@ -60,6 +60,9 @@ extraEnvVars:
   # REDFISH_PROBE_INTERVAL_IN_SECONDS: "60"
   # REDFISH_SKIP_SSL_VERIFY: "true"
 
+canMount:
+  usrSrc: true  # /usr/src may not available, ie GKE
+
 service:
   annotations: {}
   type: ClusterIP
