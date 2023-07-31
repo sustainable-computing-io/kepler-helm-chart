@@ -20,6 +20,7 @@ Kepler (Kubernetes-based Efficient Power Level Exporter) uses eBPF to probe ener
 | `affinity`                   | affinity rules                         | `{}` |
 
 ## Resources
+
 | Name                         | Description                           | Value        |
 | ---------------------------- | ------------------------------------- | ------------ |
 | `resources.requests.cpu`     | cpu request                           | `100m`       |
@@ -28,6 +29,7 @@ Kepler (Kubernetes-based Efficient Power Level Exporter) uses eBPF to probe ener
 | `resources.limits.memory`    | memory limit                          | `200Mi`      |
 
 ## Environment Variables
+
 | Name                                     | Description                    | Value    |
 | ---------------------------------------- | ------------------------------ | -------- |
 | `extraEnvVars.KEPLER_LOG_LEVEL`          | the kepler log level           | `"1"`    |
@@ -40,6 +42,7 @@ Kepler (Kubernetes-based Efficient Power Level Exporter) uses eBPF to probe ener
 | `extraEnvVars.CGROUP_METRICS`            | specify CGROUP Metrics         | `"*"`    |
 
 ## Service
+
 | Name                         | Description                            | Value        |
 | ---------------------------- | -------------------------------------- | ------------ |
 | `service.annotations`        | annotations for the service            | `{}` |
@@ -47,6 +50,7 @@ Kepler (Kubernetes-based Efficient Power Level Exporter) uses eBPF to probe ener
 | `service.port`               | the service port                       | `9102` |
 
 ## Service Account
+
 | Name                         | Description                            | Value        |
 | ---------------------------- | -------------------------------------- | ------------ |
 | `serviceAccount.create`      | whether the service account is created | `false` |
@@ -54,6 +58,7 @@ Kepler (Kubernetes-based Efficient Power Level Exporter) uses eBPF to probe ener
 | `serviceAccount.name`        | name override                          | `""` |
 
 ## Service Monitor
+
 | Name                          | Description                            | Value       |
 | ----------------------------- | -------------------------------------- | ----------- |
 | `serviceMonitor.enabled`      | whether the service monitor is enabled | `false`     |
@@ -61,3 +66,13 @@ Kepler (Kubernetes-based Efficient Power Level Exporter) uses eBPF to probe ener
 | `serviceMonitor.interval`     | the scrape interval                    | `30s`       |
 | `serviceMonitor.scrapeTimeout`| the scrape timeout                     | `5s`        |
 | `serviceMonitor.labels`       | labels for the service monitor         | `{} `       |
+
+## Redfish BMC and IPMI
+
+| Name                  | Description                            | Value     |
+| --------------------- | -------------------------------------- | --------- |
+| `redfish.name`        | redfish secret name                    | `redfish` |
+| `redfish.enabled`     | whether the redfisch secret is enabled | `false`   |
+| `redfish.annotations` | annotations for redfish secret         | `{}`      |
+| `redfish.fileContent` | redfish credentials                    | ``        |
+| `redfish.labels`      | labels for redfish secret              | `{}`      |
