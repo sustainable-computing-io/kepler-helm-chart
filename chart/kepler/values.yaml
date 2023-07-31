@@ -57,6 +57,11 @@ extraEnvVars:
   ENABLE_PROCESS_METRICS: "true"
   CPU_ARCH_OVERRIDE: ""
   CGROUP_METRICS: "*"
+  # REDFISH_PROBE_INTERVAL_IN_SECONDS: "60"
+  # REDFISH_SKIP_SSL_VERIFY: "true"
+
+canMount:
+  usrSrc: true  # /usr/src may not available, ie GKE
 
 service:
   annotations: {}
@@ -78,3 +83,12 @@ serviceMonitor:
   interval: 30s
   scrapeTimeout: 5s
   labels: {}
+
+redfish:
+  enabled: false
+  name: redfish
+  labels: {}
+  annotations: {}
+  fileContent: |-
+    your_kubelet_node1_name,redfish_username,redfish_password,https://node1_redfish_ip_or_hostname
+    your_kubelet_node2_name,redfish_username,redfish_password,https://node2_redfish_ip_or_hostname
