@@ -28,6 +28,8 @@ spec:
     spec:
       hostNetwork: true
       serviceAccountName: {{ include "kepler.serviceAccountName" . }}
+      imagePullSecrets: 
+          {{- toYaml .Values.imagePullSecrets | nindent 8 }}
       containers:
       - name: kepler-exporter
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
