@@ -12,6 +12,10 @@ metadata:
     {{- end }}
 spec:
   jobLabel: app.kubernetes.io/name
+  {{- with .Values.serviceMonitor.attachMetadata }}
+  attachMetadata:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
   endpoints:
     - port: http
       {{- with .Values.serviceMonitor.interval }}

@@ -83,6 +83,8 @@ serviceMonitor:
   interval: 30s
   scrapeTimeout: 5s
   labels: {}
+  attachMetadata:
+    node: false
 
 redfish:
   enabled: false
