@@ -22,13 +22,10 @@ spec:
       {{- end }}
       path: /metrics
       scheme: http
+      {{- with .Values.serviceMonitor.relabelings }}
       relabelings:
-        - action: replace
-          regex: (.*)
-          replacement: $1
-          sourceLabels:
-            - __meta_kubernetes_pod_node_name
-          targetLabel: instance
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
   namespaceSelector:
     matchNames:
       - {{ .Release.Namespace }}
