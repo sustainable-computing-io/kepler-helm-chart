@@ -87,6 +87,8 @@ serviceMonitor:
   interval: 30s
   scrapeTimeout: 5s
   labels: {}
+  attachMetadata:
+    node: false
   relabelings:
     - action: replace
       regex: (.*)
