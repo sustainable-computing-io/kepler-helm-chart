@@ -12,6 +12,34 @@ entries:
         https://keybase.io/bradmccoydev/pgp_keys.asc \n"
     apiVersion: v2
     appVersion: release-0.7.2
+    created: "2024-01-23T16:39:59.998472648Z"
+    description: A Helm chart for kepler (Kubernetes-based Efficient Power Level Exporter)
+    digest: 97ea4fa5bd6dfe36a8eb5d212a75e1deaea547e3cd9fad64bbbbd8f79682760c
+    home: https://sustainable-computing.io/html/index.html
+    icon: https://avatars.githubusercontent.com/u/91567619?s=200&v=4
+    keywords:
+    - cloud-native
+    - sustainable-computing
+    - kepler
+    - ebpf
+    name: kepler
+    sources:
+    - https://github.com/sustainable-computing-io/kepler
+    type: application
+    urls:
+    - https://github.com/sustainable-computing-io/kepler-helm-chart/releases/download/kepler-0.5.5/kepler-0.5.5.tgz
+    version: 0.5.5
+  - annotations:
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: support
+          url: https://github.com/sustainable-computing-io/kepler/issues/new
+        - name: docs
+          url: https://sustainable-computing.io/
+      artifacthub.io/signKey: "fingerprint: 91BF31657FB6BB5931CBFCF92A544B84946E3621\nurl:
+        https://keybase.io/bradmccoydev/pgp_keys.asc \n"
+    apiVersion: v2
+    appVersion: release-0.7.2
     created: "2024-01-22T14:03:12.145308672Z"
     description: A Helm chart for kepler (Kubernetes-based Efficient Power Level Exporter)
     digest: fc16f8340e28d48e71f7be6b91344eb06622aa0aa79f5ffe80d09cba18cf0337
@@ -497,4 +525,4 @@ entries:
     urls:
     - https://github.com/sustainable-computing-io/kepler-helm-chart/releases/download/kepler-0.3.1/kepler-0.3.1.tgz
     version: 0.3.1
-generated: "2024-01-22T14:03:12.145609249Z"
+generated: "2024-01-23T16:39:59.998642043Z"
