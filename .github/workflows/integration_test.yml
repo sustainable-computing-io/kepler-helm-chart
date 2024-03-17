@@ -22,6 +22,7 @@ jobs:
         with:
           ebpfprovider: libbpf
           cluster_provider: ${{matrix.cluster_provider}}
+          local_dev_cluster_version: v0.0.4
 
       - name: remove me
         run: |
