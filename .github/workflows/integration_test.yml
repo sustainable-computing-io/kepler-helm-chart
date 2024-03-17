@@ -27,7 +27,7 @@ jobs:
         run: |
             env | grep -i kube
             pwd
-            ls local-dev-cluster/tmp/microshift/kubeconfig
+            # ls local-dev-cluster/tmp/microshift/kubeconfig
             kubectl get pods 
 
       - name: install helm
