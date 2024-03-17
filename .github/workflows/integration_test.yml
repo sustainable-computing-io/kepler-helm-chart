@@ -25,23 +25,23 @@ jobs:
 
       - name: remove me
         run: |
-            env | grep -i kube
-            pwd
-            # ls local-dev-cluster/tmp/microshift/kubeconfig
-            kubectl get pods 
+          env | grep -i kube
+          pwd
+          # ls local-dev-cluster/tmp/microshift/kubeconfig
+          # kubectl get pods 
 
       - name: install helm
         uses: azure/setup-helm@v4.1.0
 
       - name: helm lint
         run: |
-            helm lint . --debug
+          helm lint . --debug
 
       - name: deploy kepler using helm chart
         run: |
-            tree -a
-            helm install kepler . --values values.yaml --create-namespace --namespace kepler --dry-run --debug
-            helm install kepler . --values values.yaml --create-namespace --namespace kepler --debug
+          tree -a
+          helm install kepler . --values values.yaml --create-namespace --namespace kepler --dry-run --debug
+          helm install kepler . --values values.yaml --create-namespace --namespace kepler --debug
 
       - name: test if kepler is alive
         run: |
