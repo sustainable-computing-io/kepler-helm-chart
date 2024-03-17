@@ -18,10 +18,10 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-go@v4
         with:
-          go-version: 1.18
+          go-version: 1.20
 
       - name: use kepler action for kind cluster build
-        uses: sustainable-computing-io/kepler-action@v0.0.2
+        uses: sustainable-computing-io/kepler-action@v0.0.5
         with:
           ebpfprovider: bcc
           cluster_provider: ${{matrix.cluster_provider}}
