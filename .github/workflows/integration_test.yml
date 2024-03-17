@@ -16,9 +16,6 @@ jobs:
         cluster_provider: [kind, microshift]
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-go@v4
-        with:
-          go-version: 1.20
 
       - name: use kepler action for kind cluster build
         uses: sustainable-computing-io/kepler-action@v0.0.5
@@ -27,13 +24,7 @@ jobs:
           cluster_provider: ${{matrix.cluster_provider}}
 
       - name: install helm
-        run: |     
-            curl https://baltocdn.com/helm/signing.asc | gpg --dearmor | sudo tee /usr/share/keyrings/helm.gpg > /dev/null
-            sudo apt-get install apt-transport-https --yes
-            echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/helm.gpg] https://baltocdn.com/helm/stable/debian/ all main" | sudo tee /etc/apt/sources.list.d/helm-stable-debian.list
-            sudo apt-get update
-            sudo apt-get install helm
-            sudo apt-get install tree
+        uses: azure/setup-helm@v4.1.0
 
       - name: helm lint
         run: |
@@ -42,8 +33,9 @@ jobs:
       - name: deploy kepler using helm chart
         run: |
             tree -a
-            helm install  kepler . --values values.yaml  --create-namespace  --namespace kepler --dry-run --debug
-            helm install  kepler . --values values.yaml  --create-namespace  --namespace kepler --debug
+            kubectl get pods 
+            helm install kepler . --values values.yaml --create-namespace --namespace kepler --dry-run --debug
+            helm install kepler . --values values.yaml --create-namespace --namespace kepler --debug
 
       - name: test if kepler is alive
         run: |
