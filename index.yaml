@@ -11,6 +11,34 @@ entries:
       artifacthub.io/signKey: "fingerprint: 91BF31657FB6BB5931CBFCF92A544B84946E3621\nurl:
         https://keybase.io/bradmccoydev/pgp_keys.asc \n"
     apiVersion: v2
+    appVersion: release-0.7.10
+    created: "2024-06-11T17:29:02.982713515Z"
+    description: A Helm chart for kepler (Kubernetes-based Efficient Power Level Exporter)
+    digest: e9f7db178d85bd3ad7680ba5da21f1e1d56b401c12199116074a7623f674e207
+    home: https://sustainable-computing.io/html/index.html
+    icon: https://avatars.githubusercontent.com/u/91567619?s=200&v=4
+    keywords:
+    - cloud-native
+    - sustainable-computing
+    - kepler
+    - ebpf
+    name: kepler
+    sources:
+    - https://github.com/sustainable-computing-io/kepler
+    type: application
+    urls:
+    - https://github.com/sustainable-computing-io/kepler-helm-chart/releases/download/kepler-0.5.7/kepler-0.5.7.tgz
+    version: 0.5.7
+  - annotations:
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: support
+          url: https://github.com/sustainable-computing-io/kepler/issues/new
+        - name: docs
+          url: https://sustainable-computing.io/
+      artifacthub.io/signKey: "fingerprint: 91BF31657FB6BB5931CBFCF92A544B84946E3621\nurl:
+        https://keybase.io/bradmccoydev/pgp_keys.asc \n"
+    apiVersion: v2
     appVersion: release-0.7.8
     created: "2024-03-18T13:19:50.932812224Z"
     description: A Helm chart for kepler (Kubernetes-based Efficient Power Level Exporter)
@@ -553,4 +581,4 @@ entries:
     urls:
     - https://github.com/sustainable-computing-io/kepler-helm-chart/releases/download/kepler-0.3.1/kepler-0.3.1.tgz
     version: 0.3.1
-generated: "2024-03-18T13:19:50.933033398Z"
+generated: "2024-06-11T17:29:02.982914659Z"
