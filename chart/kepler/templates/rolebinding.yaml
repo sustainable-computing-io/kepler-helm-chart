@@ -22,7 +22,7 @@ metadata:
   name: {{ include "kepler.name" . }}-clusterrole-binding
 roleRef:
   kind: ClusterRole
-  name: {{ .Chart.Name }}-clusterrole
+  name: {{ include "kepler.name" . }}-clusterrole
   apiGroup: "rbac.authorization.k8s.io"
 subjects:
   - kind: ServiceAccount
