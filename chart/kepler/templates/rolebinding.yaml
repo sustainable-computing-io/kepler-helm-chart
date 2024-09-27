@@ -2,7 +2,7 @@
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
-  name: {{ include "kepler.name" . }}-clusterrole
+  name: {{ include "kepler.fullname" . }}-clusterrole
 rules:
   - apiGroups: [""]
     resources:
@@ -19,10 +19,10 @@ rules:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
-  name: {{ include "kepler.name" . }}-clusterrole-binding
+  name: {{ include "kepler.fullname" . }}-clusterrole-binding
 roleRef:
   kind: ClusterRole
-  name: {{ include "kepler.name" . }}-clusterrole
+  name: {{ include "kepler.fullname" . }}-clusterrole
   apiGroup: "rbac.authorization.k8s.io"
 subjects:
   - kind: ServiceAccount
