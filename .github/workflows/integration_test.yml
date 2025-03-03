@@ -19,7 +19,7 @@ jobs:
         with:
           ebpfprovider: libbpf
           cluster_provider: kind
-          local_dev_cluster_version: v0.0.5
+          local_dev_cluster_version: v0.0.9
 
       - name: install helm
         uses: azure/setup-helm@v4.1.0
