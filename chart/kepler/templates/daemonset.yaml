@@ -68,7 +68,7 @@ spec:
           failureThreshold: 5
           httpGet:
             path: /healthz
-            port: {{ .Values.service.port }}
+            port: http
             scheme: HTTP
           initialDelaySeconds: 10
           periodSeconds: 60
