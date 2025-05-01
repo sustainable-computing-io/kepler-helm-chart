@@ -110,3 +110,19 @@ redfish:
   fileContent: |-
     your_kubelet_node1_name,redfish_username,redfish_password,https://node1_redfish_ip_or_hostname
     your_kubelet_node2_name,redfish_username,redfish_password,https://node2_redfish_ip_or_hostname
+
+networkPolicy:
+  enabled: false
+  # If you enable a networkPolicy, you must add any redfish IP/Ports you list
+  # egress:
+  #   - to:
+  #     - ipBlock:
+  #         cidr: 10.0.0.0/24
+  #     ports:
+  #       - protocol: TCP
+  #         port: 443
+  egress: {}
+  ingress:
+    - ports:
+      - protocol: TCP
+        port: 9102
