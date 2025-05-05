@@ -93,6 +93,8 @@ spec:
             mountPath: /sys
           - name: proc
             mountPath: /proc
+          - name: config-dir
+            mountPath: /etc/kepler            
           {{- if .Values.canMount.usrSrc }}
           - name: usr-src
             mountPath: /usr/src
@@ -119,6 +121,9 @@ spec:
           hostPath:
             path: /proc
             type: Directory
+        - name: config-dir
+          emptyDir:
+            sizeLimit: 100Ki
         {{- if .Values.canMount.usrSrc }}
         - name: usr-src
           hostPath:
