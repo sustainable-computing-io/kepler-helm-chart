@@ -101,6 +101,18 @@ serviceMonitor:
       sourceLabels:
         - __meta_kubernetes_pod_node_name
       targetLabel: instance
+  metricRelabelings: []
+    ## For example when you need the name of the pod's namespace in the 'namespace' label, e.g. for a multitenant setup
+    # - action: replace
+    #   regex: (.*)
+    #   sourceLabels:
+    #   - namespace
+    #   targetLabel: app_namespace
+    # - action: replace
+    #   regex: (.*)
+    #   sourceLabels:
+    #   - container_namespace
+    #   targetLabel: namespace
 
 redfish:
   enabled: false
