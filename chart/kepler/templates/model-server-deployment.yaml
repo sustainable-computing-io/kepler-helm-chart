@@ -52,7 +52,6 @@ spec:
           {{- toYaml . | nindent 12 }}
         {{- end }}
       volumes:
-      # TODO: needed?
       - name: mnt
         emptyDir: {}
       {{- with .Values.modelServer.podSecurityContext }}

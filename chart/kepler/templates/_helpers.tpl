@@ -61,7 +61,6 @@ Create the name of the service account to use
 {{- end }}
 {{- end }}
 
-# TODO: remove? / document
 {{- define "modelServer.name" -}}
 {{- default "model-server" .Values.modelServer.nameOverride | trunc 63 | trimSuffix "-" }}
 {{- end }}
