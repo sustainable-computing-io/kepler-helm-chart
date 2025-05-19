@@ -81,7 +81,7 @@ Kepler (Kubernetes-based Efficient Power Level Exporter) uses eBPF to probe ener
 
 | Name                              | Description                                                                               | Value     |
 | --------------------------------- | ----------------------------------------------------------------------------------------- | --------- |
-| `modelServer.enabled`             | whether model-server and estimator sidcar should be deployed                              | `false`   |
+| `modelServer.enabled`             | whether model-server and estimator sidecar should be deployed                             | `false`   |
 | `modelServer.modelConfig`         | [modelConfig](https://sustainable-computing.io/kepler_model_server/get_started/) contents | `NODE_COMPONENTS_ESTIMATOR=true` |
 | `modelServer.nameOverride`        | overrides the name-suffix of the model-server deployment and service                      | `""` |
 | `modelServer.fullnameOverride`    | replaces the name of the model-server deployment and service                              | `""` |
