@@ -51,10 +51,15 @@ spec:
         securityContext:
           {{- toYaml . | nindent 12 }}
         {{- end }}
+        startupProbe:
+          httpGet:
+            path: /best-models
+            port: http
+          initialDelaySeconds: 1
         readinessProbe:
           httpGet:
             path: /best-models
-            port: 8100
+            port: http
       volumes:
       - name: mnt
         emptyDir: {}
