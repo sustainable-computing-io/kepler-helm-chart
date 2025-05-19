@@ -45,10 +45,12 @@ jobs:
           echo "Waiting for kepler pods to become ready"
           kubectl wait -n kepler pods -l app.kubernetes.io/component=exporter,app.kubernetes.io/name=kepler --timeout=100s --for=condition=Ready
           kubectl logs $(kubectl -n kepler get pods -l app.kubernetes.io/component=exporter -oname) -n kepler
-          if [[ "true" == "${{ matrix.testConfig.expectModelServer }}" ]]; then
-            echo "Waiting for model-server pods to become ready"
-            kubectl wait -n kepler pods -l app.kubernetes.io/component=model-server,app.kubernetes.io/name=kepler --timeout=60s --for=condition=Ready
-            # if the model-server configuration is correct the kepler pods should use the model served through the Estimator Sidecar
-            kubectl logs $(kubectl -n kepler get pods -l app.kubernetes.io/component=exporter -oname) -n kepler | grep 'Using the EstimatorSidecar/AbsPower Power Model to estimate Node Component Power'
-          fi
           kubectl get all -n kepler
+
+      - name: test model server
+        if: matrix.testConfig.expectModelServer
+        run: |
+          echo "Waiting for model-server pods to become ready"
+          kubectl wait -n kepler pods -l app.kubernetes.io/component=model-server,app.kubernetes.io/name=kepler --timeout=60s --for=condition=Ready
+          # if the model-server configuration is correct the kepler pods should use the model served through the Estimator Sidecar
+          kubectl logs $(kubectl -n kepler get pods -l app.kubernetes.io/component=exporter -oname) -n kepler | grep 'Using the EstimatorSidecar/AbsPower Power Model to estimate Node Component Power'
