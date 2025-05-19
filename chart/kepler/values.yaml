@@ -129,7 +129,7 @@ networkPolicy:
 
 # Configure kepler [model-server](https://sustainable-computing.io/kepler_model_server/get_started/)
 modelServer:
-  # set to true to deploy the model-server, add the required estimator sidecar to kepler and configure kepler to use the model-server
+  # whether model-server and estimator sidecar should be deployed
   enabled: false
   modelConfig: |
     NODE_COMPONENTS_ESTIMATOR=true
