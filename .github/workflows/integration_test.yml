@@ -7,6 +7,12 @@ on:
 
 jobs:
   integration_test:
+    strategy:
+      matrix:
+        testConfig:
+          - expectModelServer: false
+          - expectModelServer: true
+            extraHelmFlags: '-f ci/model-server-enabled-values.yaml'
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -30,11 +36,18 @@ jobs:
       - name: deploy kepler using helm chart
         run: |
           tree -a
-          helm install kepler . --values values.yaml --create-namespace --namespace kepler --dry-run --debug
-          helm install kepler . --values values.yaml --create-namespace --namespace kepler --debug
+          helm install kepler . --values values.yaml --create-namespace --namespace kepler --dry-run --debug ${{ matrix.testConfig.extraHelmFlags }}
+          helm install kepler . --values values.yaml --create-namespace --namespace kepler --debug ${{ matrix.testConfig.extraHelmFlags }}
 
       - name: test if kepler is alive
         run: |
-          sleep 60
-          kubectl logs $(kubectl -n kepler get pods -oname) -n kepler
+          echo "Waiting for kepler pods to become ready"
+          kubectl rollout status daemonset,deployment --namespace kepler --timeout 120s
+          kubectl logs $(kubectl -n kepler get pods -l app.kubernetes.io/component=exporter -oname) -n kepler
           kubectl get all -n kepler
+
+      - name: test model server
+        if: matrix.testConfig.expectModelServer
+        run: |
+          # if the model-server configuration is correct the kepler pods should use the model served through the Estimator Sidecar
+          kubectl logs $(kubectl -n kepler get pods -l app.kubernetes.io/component=exporter -oname) -n kepler | grep 'Using the EstimatorSidecar/AbsPower Power Model to estimate Node Component Power'

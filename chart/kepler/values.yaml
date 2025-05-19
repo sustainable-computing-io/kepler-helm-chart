@@ -138,3 +138,38 @@ networkPolicy:
     - ports:
       - protocol: TCP
         port: 9102
+
+# Configure kepler [model-server](https://sustainable-computing.io/kepler_model_server/get_started/)
+modelServer:
+  # whether model-server and estimator sidecar should be deployed
+  enabled: false
+  modelConfig: |
+    NODE_COMPONENTS_ESTIMATOR=true
+  nameOverride: ""
+  fullNameOverride: ""
+  image:
+    repository: "quay.io/sustainable_computing_io/kepler_model_server"
+    tag: "v0.7.12"
+    pullPolicy: Always
+  # replicas of the model-server Deployment
+  replicas: 1
+  # additional annotions for the model server Deployment
+  annotations: {}
+  # additional annotions for the model server Pods
+  podAnnotations: {}
+  # additional labels for the model server Pods
+  podLabels: {}
+  podSecurityContext: {}
+  # security context for the model-server container in the model-server Deployment
+  securityContext: {}
+  nodeSelector:
+    kubernetes.io/os: linux
+  affinity: {}
+  # resources for the model-server containers in the model-server Deployment
+  resources: {}
+  service:
+    annotations: {}
+    type: ClusterIP
+    port: 8100
+  # resources for the estimator sidecar deployed in the kepler DaemonSet
+  sidecarResources: {}

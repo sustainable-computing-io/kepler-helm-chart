@@ -32,6 +32,31 @@ spec:
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+      {{- if .Values.modelServer.enabled }}
+      initContainers:
+      - name: estimator
+        command:
+        - python3
+        args:
+        - -u
+        - src/kepler_model/estimate/estimator.py
+        image: "{{ .Values.modelServer.image.repository }}:{{ .Values.modelServer.image.tag }}"
+        imagePullPolicy: {{ .Values.modelServer.image.pullPolicy }}
+        {{- with .Values.modelServer.sidecarResources }}
+        resources:
+          {{- toYaml . | nindent 12 }}
+        {{- end }}
+        restartPolicy: Always
+        startupProbe:
+          exec:
+            command:
+            - test
+            - -S
+            - /tmp/estimator.sock
+        volumeMounts:
+        - mountPath: /tmp
+          name: estimator-sock
+      {{- end }}
       containers:
       - name: kepler-exporter
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
@@ -56,6 +81,17 @@ spec:
             value: "/metrics"
           - name: BIND_ADDRESS
             value: "0.0.0.0:{{ .Values.service.port }}"
+          {{- if .Values.modelServer.enabled }}
+          - name: MODEL_SERVER_ENABLE
+            value: "true"
+          - name: MODEL_SERVER_ENDPOINT
+            value: {{ printf "http://%s:%d/model" (include "modelServer.fullname" .) .Values.modelServer.service.port }}
+          {{- with .Values.modelServer.modelConfig }}
+          - name: MODEL_CONFIG
+            value: |
+              {{- . | nindent 14 }}
+          {{- end }}
+          {{- end }}
           {{- range $key, $value := .Values.extraEnvVars }}
           - name: {{ $key | quote }}
             value: {{ $value | quote }}
@@ -104,6 +140,10 @@ spec:
             mountPath: /etc/redfish
             readOnly: true
           {{- end }}
+          {{- if .Values.modelServer.enabled }}
+          - name: estimator-sock
+            mountPath: /tmp
+          {{- end }}
         {{- with .Values.resources }}
         resources:
           {{- toYaml . | nindent 12 }}
@@ -134,6 +174,10 @@ spec:
         - name: redfish
           secret:
             secretName: {{ .Values.redfish.name }}
+        {{- end }}
+        {{- if .Values.modelServer.enabled }}
+        - name: estimator-sock
+          emptyDir: {}
         {{- end }}
       {{- with .Values.podSecurityContext }}
       securityContext:

@@ -76,3 +76,25 @@ Kepler (Kubernetes-based Efficient Power Level Exporter) uses eBPF to probe ener
 | `redfish.annotations` | annotations for redfish secret         | `{}`      |
 | `redfish.fileContent` | redfish credentials                    | ``        |
 | `redfish.labels`      | labels for redfish secret              | `{}`      |
+
+## Model Server & Estimator Sidecar
+
+| Name                              | Description                                                                               | Value     |
+| --------------------------------- | ----------------------------------------------------------------------------------------- | --------- |
+| `modelServer.enabled`             | whether model-server and estimator sidecar should be deployed                             | `false`   |
+| `modelServer.modelConfig`         | [modelConfig](https://sustainable-computing.io/kepler_model_server/get_started/) contents | `NODE_COMPONENTS_ESTIMATOR=true` |
+| `modelServer.nameOverride`        | overrides the name-suffix of the model-server deployment and service                      | `""` |
+| `modelServer.fullnameOverride`    | replaces the name of the model-server deployment and service                              | `""` |
+| `modelServer.replicas`            | replicas of the model-server deployment                                                   | `""` |
+| `modelServer.image.repository`    | repository to pull the model-server image from                                            | `"quay.io/sustainable_computing_io/kepler_model_server"` |
+| `modelServer.image.tag`           | image tag for the model-server                                                            | `"v0.7.12"` |
+| `modelServer.image.pullPolicy`    | image pull policy for the model-server image                                              | `Always`    |
+| `modelServer.imagePullSecrets`    | Secret name for pulling model-server images from private repository                       | `[]`        |
+| `modelServer.podAnnotations`      | Additional pod annotations for the model-server pods                                      | `{}`        |
+| `modelServer.securityContext`     | privileges and access control settings for the model-server container                     | `{}`        |
+| `modelServer.podSecurityContext`  | privileges and access control settings for model-server pods                              | `{}`        |
+| `modelServer.resources`           | resource limits and requests for the model-server                                         | `{}`        |
+| `modelServer.sidecarResources`    | resource limits and requests for the estimator sidecar                                    | `{}`        |
+| `modelServer.service.annotations` | annotations for the model-server service                                                  | `{}`        |
+| `modelServer.service.type`        | the model-server service type                                                             | `ClusterIP` |
+| `modelServer.service.port`        | the model-server service port                                                             | `8100`      |
