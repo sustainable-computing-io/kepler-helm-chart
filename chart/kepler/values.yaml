@@ -9,6 +9,8 @@ image:
   repository: "quay.io/sustainable_computing_io/kepler"
   # -- Image tag, if empty it will get it from the chart's appVersion
   tag: ""
+  # -- Image digest, if set it will override the tag
+  digest: ""
   # -- Pull policy
   pullPolicy: Always
 
@@ -150,6 +152,8 @@ modelServer:
   image:
     repository: "quay.io/sustainable_computing_io/kepler_model_server"
     tag: "v0.7.12"
+    # if empty, it will use the tag
+    digest: ""
     pullPolicy: Always
   # replicas of the model-server Deployment
   replicas: 1

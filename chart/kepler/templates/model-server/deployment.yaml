@@ -34,7 +34,7 @@ spec:
       - name: server-api
         args:
         - model-server
-        image: "{{ .Values.modelServer.image.repository }}:{{ .Values.modelServer.image.tag }}"
+        image: "{{ .Values.modelServer.image.repository }}{{ include "modelServer.imageIdentifier" . }}"
         imagePullPolicy: {{ .Values.modelServer.image.pullPolicy }}
         ports:
         - containerPort: 8100
