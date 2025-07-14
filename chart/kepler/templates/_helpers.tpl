@@ -60,3 +60,20 @@ Create the name of the service account to use
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}
 {{- end }}
+
+{{/*
+Calculate the image identifier to use
+*/}}
+{{- define "kepler.imageIdentifier" -}}
+{{- if .Values.image.digest }}
+  {{- $digest := .Values.image.digest }}
+  {{- if not (hasPrefix "sha256:" $digest) }}
+    {{- $digest = printf "sha256:%s" $digest }}
+  {{- end }}
+  {{- printf "@%s" $digest }}
+{{- else if .Values.image.tag }}
+  {{- printf ":%s" .Values.image.tag }}
+{{- else }}
+  {{- printf ":%s" .Chart.AppVersion }}
+{{- end }}
+{{- end }}

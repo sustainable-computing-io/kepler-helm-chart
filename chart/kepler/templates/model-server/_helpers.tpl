@@ -39,3 +39,18 @@ Selector labels
 app.kubernetes.io/name: {{ include "kepler.name" . }}
 app.kubernetes.io/component: model-server
 {{- end }}
+
+{{/*
+Calculate the image identifier to use
+*/}}
+{{- define "modelServer.imageIdentifier" -}}
+{{- if .Values.modelServer.image.digest }}
+  {{- $digest := .Values.modelServer.image.digest }}
+  {{- if not (hasPrefix "sha256:" $digest) }}
+    {{- $digest = printf "sha256:%s" $digest }}
+  {{- end }}
+  {{- printf "@%s" $digest }}
+{{- else }}
+  {{- printf ":%s" .Values.modelServer.image.tag }}
+{{- end }}
+{{- end }}
