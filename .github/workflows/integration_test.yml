@@ -18,7 +18,7 @@ jobs:
       run:
         working-directory: ./chart/kepler
     steps:
-      - uses: actions/checkout@v6.0.0
+      - uses: actions/checkout@v6.0.1
 
       - name: use kepler action for kind cluster build
         uses: sustainable-computing-io/kepler-action@v0.0.10
