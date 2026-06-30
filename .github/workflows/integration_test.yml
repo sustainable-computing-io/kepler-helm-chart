@@ -27,7 +27,7 @@ jobs:
           local_dev_cluster_version: v0.0.9
 
       - name: install helm
-        uses: azure/setup-helm@v5
+        uses: azure/setup-helm@v5.0.1
 
       - name: helm lint
         run: |
